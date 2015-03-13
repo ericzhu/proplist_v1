@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Listings</h1>
+
+<div class="row center">
+  <% @listings.each do |listing| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <%= link_to image_tag(listing.image_url(:medium), alt: listing.name, class: 'img-rounded' ), listing %>
+
+
+        <div class="caption">
+          <h3><%= listing.name %></h3>
+          <p><%= number_to_currency listing.price %></p>
+          <p><%= listing.destription %></p>
+          <p>
+            <%= link_to 'Edit', edit_listing_path(listing), class: 'btn btn-default btn-in-grid'  %>
+            <%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-in-grid'  %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br>
+
+<%= link_to 'New Listing', new_listing_path, class: 'btn btn-link' %>
