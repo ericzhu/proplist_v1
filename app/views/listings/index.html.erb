@@ -13,10 +13,12 @@
           <h3><%= listing.name %></h3>
           <p><%= number_to_currency listing.price %></p>
           <p><%= listing.destription %></p>
-          <p>
-            <%= link_to 'Edit', edit_listing_path(listing), class: 'btn btn-default btn-in-grid'  %>
-            <%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-in-grid'  %>
-          </p>
+          <% if belongs_to_current_user? listing %>
+            <p>
+              <%= link_to 'Edit', edit_listing_path(listing), class: 'btn btn-default btn-in-grid'  %>
+              <%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-in-grid'  %>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>
