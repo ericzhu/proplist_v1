@@ -8,7 +8,12 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all
+    category = params[:category]
+    if category.blank?
+      @listings = Listing.all.paginate(page: params[:page], per_page: 4)
+    else
+      @listings = Listing.where(category_id: Category.where(name: category).select(:id)).paginate(page: params[:page], per_page: 4)
+    end
   end
 
   # GET /listings/1
@@ -81,6 +86,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:name, :destription, :price, :image)
+      params.require(:listing).permit(:name, :destription, :price, :image, :category_id)
     end
 end

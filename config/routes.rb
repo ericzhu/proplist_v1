@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
+  
   devise_for :users
   
   resources :listings
+  resources :categories
   
   namespace :my_account do
     resources :listings
-end
+  end
+
+  namespace :admin do
+    resources :categories
+  end
 
   get 'pages/about'
   get 'pages/contact'

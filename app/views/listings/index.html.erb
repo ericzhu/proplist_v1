@@ -25,5 +25,5 @@
   <% end %>
 </div>
 <br>
-
+<%= will_paginate @listings, renderer: BootstrapPagination::Rails%> <br/>
 <%= link_to 'New Listing', new_listing_path, class: 'btn btn-link' %>
